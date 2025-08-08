@@ -5,6 +5,9 @@ import scala.collection.immutable.Seq
 val Version      = "0.1.0"
 val ScalaVersion = "3.6.4"
 val scrImageVersion = "4.3.0"
+resolvers ++= Seq(
+  "image" at "https://artifacts.alfresco.com/nexus/content/repositories/public/"
+)
 lazy val commonSettings = Seq(
   scalaVersion              := ScalaVersion,
   version                   := Version,
@@ -31,27 +34,31 @@ lazy val commonSettings = Seq(
     "com.sksamuel.scrimage" % "scrimage-webp" % scrImageVersion,
     ("com.sksamuel.scrimage" %% "scrimage-scala" % scrImageVersion)
       .cross(CrossVersion.for3Use2_13),
-//    "org.bytedeco" % "javacv" % "1.5.12" classifier "windows-x86_64",
+    "org.bytedeco" % "javacv" % "1.5.12",// classifier "windows-x86_64",
     "org.bytedeco" % "opencv" % "4.11.0-1.5.12" classifier "windows-x86_64",
-    "org.bytedeco" % "ffmpeg" % "7.1.1-1.5.12" classifier "windows-x86_64"
-//    "org.bytedeco" % "ffmpeg-platform" % "7.1.1-1.5.12" classifier "windows-x86_64"
-//    "org.bytedeco" % "opencv-platform" % "4.11.0-1.5.12"
+    "org.bytedeco" % "ffmpeg" % "7.1.1-1.5.12" classifier "windows-x86_64",
+    "org.bytedeco" % "ffmpeg-platform" % "7.1.1-1.5.12" ,//classifier "windows-x86_64",
+    "org.bytedeco" % "opencv-platform" % "4.11.0-1.5.12"
   )
 )
 
-resolvers ++= Seq(
-  "image" at "https://artifacts.alfresco.com/nexus/content/repositories/public/"
-)
+
 // https://mvnrepository.com/artifact/net.imglib2/imglib2
 libraryDependencies += "net.imglib2" % "imglib2" % "7.1.5"
 // https://mvnrepository.com/artifact/dev.zio/zio
 libraryDependencies += "dev.zio" %% "zio" % "2.1.20"
 // https://mvnrepository.com/artifact/dev.zio/zio-nio
 libraryDependencies += "dev.zio" %% "zio-nio" % "2.0.2"
+// https://mvnrepository.com/artifact/org.bytedeco/tensorrt-platform
+libraryDependencies += "org.bytedeco" % "tensorrt-platform" % "10.12-1.5.12"
+// https://mvnrepository.com/artifact/org.bytedeco/tensorrt
+libraryDependencies += "org.bytedeco" % "tensorrt" % "10.12-1.5.12"
+// https://mvnrepository.com/artifact/ai.djl.tensorrt/tensorrt
+libraryDependencies += "ai.djl.tensorrt" % "tensorrt" % "0.33.0" % "runtime"
 // https://mvnrepository.com/artifact/org.bytedeco/javacv
 //libraryDependencies += "org.bytedeco" % "javacv" % "1.5.12" classifier "windows-x86_64"
 // https://mvnrepository.com/artifact/org.imagemagick/imagemagick-distribution
-libraryDependencies += "org.imagemagick" % "imagemagick-distribution" % "7.1.0-16-ci-11"
+//libraryDependencies += "org.imagemagick" % "imagemagick-distribution" % "7.1.0-16-ci-11"
 // https://mvnrepository.com/artifact/org.bytedeco/opencv
 //libraryDependencies += "org.bytedeco" % "opencv" % "4.11.0-1.5.12" classifier "windows-x86_64"
 // https://mvnrepository.com/artifact/org.bytedeco/opencv-platform
